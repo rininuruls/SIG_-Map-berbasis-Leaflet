@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map Lokasi Penting - Taman Kota Lapang Merdeka Sukabumi</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <h1> Map Lokasi Penting di Taman Kota Lapang Merdeka Sukabumi </h1>
+  <div id="map" style="height: 500px;"></div>
+
+  <script>
+    // Inisialisasi map di Taman Kota Lapang Merdeka Sukabumi
+    var map = L.map('map').setView([-6.9209313, 106.9290566], 16);
+
+    // Tambah layer OSM
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    // Tambah data GeoJSON dari file (jika ada)
+    fetch("map.geojson")
+    .then(res => res.json())
+    .then(data => L.geoJSON(data, {
+        onEachFeature: function(feature, layer) {
+            if (feature.properties && feature.properties.nama) {
+                layer.bindPopup(feature.properties.nama);
+            }
+        }
+    }).addTo(map));
+
+    // ===== Point (Marker manual) =====
+    L.marker([-6.9209313, 106.9290566]).addTo(map)
+      .bindPopup("Taman Kota Lapang Merdeka Sukabumi");
+
+    // ===== Line (Polyline) - contoh jalur sekitar =====
+    var lineCoords = [
+      [-6.9215, 106.9285],
+      [-6.9209, 106.9290],
+      [-6.9203, 106.9295]
+    ];
+    L.polyline(lineCoords, {color: 'red'}).addTo(map)
+      .bindPopup("Contoh Garis (Jalur di sekitar taman)");
+
+    // ===== Polygon - contoh area taman =====
+    var polygonCoords = [
+      [-6.9212, 106.9287],
+      [-6.9212, 106.9294],
+      [-6.9206, 106.9294],
+      [-6.9206, 106.9287]
+    ];
+    L.polygon(polygonCoords, {color: 'blue', fillOpacity: 0.3}).addTo(map)
+      .bindPopup("Area Taman Kota Lapang Merdeka");
+  </script>
+</body>
+</html>

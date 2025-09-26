@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "nama": "Taman Kota Lapang Merdeka (Point)" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.9290566, -6.9209313]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nama": "Area Taman Kota Lapang Merdeka (Polygon)" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [106.9287, -6.9212],
+            [106.9294, -6.9212],
+            [106.9294, -6.9206],
+            [106.9287, -6.9206],
+            [106.9287, -6.9212]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nama": "Jalur Sekitar Taman (Line)" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.9285, -6.9215],
+          [106.9290, -6.9209],
+          [106.9295, -6.9203]
+        ]
+      }
+    }
+  ]
+}
